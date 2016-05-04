@@ -1,0 +1,55 @@
+
+<!-- INSERT PAGE HERE eg "Contact Us" -->
+{% extends "userlayout.html" %}
+
+<!-- metaDescription -->
+{% block metaDescription %}{% endblock %}
+
+<!-- metaKeywords -->
+{% block metaKeywords %}{% endblock %}
+
+<!-- metaTitle -->
+{% block metaTitle %}{% endblock %}
+
+{% block body %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Row -->
+        <div class="row">
+            
+        <h1>Make a new Portfolio</h1>
+
+
+
+        	<div class="col-sm-4 col-sm-offset-2">
+                    {% for message in form.title.errors %}
+                      <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+                     
+                    {% for message in form.description.errors %}
+                      <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+
+                    <form action="{{ url_for('art.newPortfolio') }}" method=post>
+                        {{ form.hidden_tag() }}
+     
+                        {{ form.title.label }}
+                        {{ form.title(class_="form-control") }}
+                        <br>
+                        {{ form.description.label }}
+                        {{ form.description(class_="form-control")  }}
+                        <br>
+                        {{ form.submit(class_="btn btn-primary") }}
+
+                    </form>
+                  </div>
+
+
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+
+{% endblock %}

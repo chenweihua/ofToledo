@@ -48,15 +48,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li>
-                        <a href="{{ url_for('public.about') }}">About</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('public.contact') }}">Contact</a>
-                    </li>
+                    
                     {% if current_user and current_user.is_authenticated %}
-                    
-                    
+                    <li>
+                        <a href="{{ url_for('art.newPortfolio') }}">New Portfolio</a>
+                    </li>
                     <li>
                         <a href="{{ url_for('user.account') }}">My Account</a>
                     </li>
@@ -65,7 +61,12 @@
                     </li>
 
                     {% else %}
-
+                    <li>
+                        <a href="{{ url_for('public.about') }}">About</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('public.contact') }}">Contact</a>
+                    </li>
                     <li>
                         <a href="{{ url_for('public.register') }}">Create Account</a>
                     </li>

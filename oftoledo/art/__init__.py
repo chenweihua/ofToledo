@@ -1,2 +1,2 @@
 """The art module"""
-# from . import views 
+from . import views 

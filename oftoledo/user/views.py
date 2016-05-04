@@ -40,7 +40,7 @@ def updateAccount():
 	        flash('Account Information Updated', 'success')
 	        return redirect(url_for('user.account'))
 
-@blueprint.route('/')
+@blueprint.route('/my-account')
 @login_required
 def account():
 	"""Show User Account Page."""
