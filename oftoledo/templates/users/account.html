@@ -1,0 +1,65 @@
+
+{% extends "userlayout.html" %}
+{% block body %}
+    
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-offset-2 col-lg-8">
+		    {% if current_user.is_admin %}
+		    <h3><code>You are an admin... <a href="{{ url_for('user.adminhome') }}"> go to the admin panel</a></code></h3>
+		    {% endif %}
+		    <h1>Welcome {{ current_user.full_name }}</h1>
+
+            {% if not current_user.confirmed %}
+                <div class="alert alert-danger">
+                  <a class="close" title="Close" href="#" data-dismiss="alert">&times;</a>
+                 {{ current_user.full_name }}, please confirm your email
+                </div>
+                 <form action="{{ url_for('user.reconfirmEmail') }}" method='post'>
+                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                 <input class='btn btn-primary btn-sm' type='submit' value='Send Confirmation Email'>
+                 </form>
+            {% endif %}
+
+		    <p>This is your account page you can update your info here</p>
+    		
+    		</div>
+            <!-- /.col-lg-offset-2 col-lg-8 -->
+
+    	</div>
+    	<!-- /.row -->
+
+    	<br><br>
+    	<div class="row">
+    		<div class="col-xs-12">
+    			<h2 style="text-align:center;">Update Your Account Info</h2>
+    		</div>
+
+    		<div class="col-md-offset-2 col-md-4">
+    		  
+                <form id="registerForm" class="form form-register" action="{{ url_for('user.updateAccount') }}" method=post>
+                    {{ form.hidden_tag() }}
+    					<br>
+                    <label for="email">Account Email</label><br>
+                    <span>{{ current_user.email }}</span><br>
+                    <br>
+                    {{ form.full_name.label }}
+                    {{ form.full_name(value = current_user.full_name, class_="form-control") }}
+                    <br>
+                    {{ form.submit }}
+                </form>
+
+            </div>
+            <!-- /.col-md-offset-2 col-md-4 -->
+
+
+        </div>
+        <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+{% endblock %}
+
